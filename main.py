@@ -58,7 +58,7 @@ class BotRequestHandler(http.server.BaseHTTPRequestHandler):
         connector = ConnectorClient(credentials, base_url=activity.service_url)
 
 
-        #tam burada bir function oluşturup activity text yerine koymam gerekecek.
+        
         reply = BotRequestHandler.__create_reply_activity(activity, 'Giriş yaptığın kelime: %s' % activity.text)
         connector.conversations.send_to_conversation(reply.conversation.id, reply)
 
@@ -97,32 +97,6 @@ class BotRequestHandler(http.server.BaseHTTPRequestHandler):
         else:
             self.__unhandled_activity()
 
-def decideIssue(userText):
-    lowercaseUserText = userText.lower()
-    source = "şçöğüıŞÇÖĞÜİ"
-    target = "scoguiSCOGUI"  
-    translateTable = str.maketrans(source, target)
-    trasnlateUserText = lowercaseUserText.translate(translateTable)
-    #kullamıcıdan gelen veriyi burda boşluğa göre split edip bir liste atayacağız.
-    questionOneSearchWord = ["1", "tarihçe"]
-    questionTwoSearchWord = ["2", "hakkında"] 
-    questionTreeSearchWord = ["3", "ürün", "güvenirliği"]
-
-    listUserText = trasnlateUserText.split(" ")
-
-    if set(listUserText).intersection(questionOneSearchWord):
-
-        return 'Tarihçe dön'
-
-    elif  set(listUserText).intersection(questionTwoSearchWord):
-        return "Hakkında dön"
-
-
-    elif  set(listUserText).intersection(questionTreeSearchWord):
-        return "Ürün güvenirliği dön"  
-        
-    else:
-        return "Yazdığınız tam olarak anlayamadım tekrar deneyebilir misiniz?"
 
 
 try:
