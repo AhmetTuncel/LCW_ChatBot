@@ -1,0 +1,15 @@
+{
+    "name": "testBot",
+    "description": "testBot",
+    "secretKey": "",
+    "services": [
+        {
+            "appId": "",
+            "id": "http://127.0.0.1:9000",
+            "type": "endpoint",
+            "appPassword": "",
+            "endpoint": "http://127.0.0.1:9000",
+            "name": "testBot"
+        }
+    ]
+}
